@@ -11,7 +11,7 @@ const Examlist = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/batch/exams/${encodeURIComponent(batchName)}`);
+        const res = await axios.get(`https://api-backend-institute.onrender.com/batch/exams/${encodeURIComponent(batchName)}`);
         setExams(res.data);
       } catch (err) {
         setError("Failed to load exams for this batch");

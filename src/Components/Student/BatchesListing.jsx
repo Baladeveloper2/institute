@@ -14,7 +14,7 @@ const StudentBatchList = () => {
 
 
     const handleExamStart=async()=>{
-      navigate(`http://localhost:5000/batch/student/exam/${examCode}`)
+      navigate(`https://api-backend-institute.onrender.com/batch/student/exam/${examCode}`)
     }
 
 
@@ -22,7 +22,7 @@ const StudentBatchList = () => {
     // Fetch all batches
     const fetchBatches = async () => {
       try {
-        const batchesRes = await axios.get("http://localhost:5000/batch/get-batches");
+        const batchesRes = await axios.get("https://api-backend-institute.onrender.com/batch/get-batches");
         setBatches(batchesRes.data);
       } catch (err) {
         setError("Failed to load batches");
@@ -33,7 +33,7 @@ const StudentBatchList = () => {
     const fetchAccessList = async () => {
       try {
         const accessRes = await axios.get(
-          `http://localhost:5000/batch/access/list?studentId=${studentId}`
+          `https://api-backend-institute.onrender.com/batch/access/list?studentId=${studentId}`
         );
         setAccessList(accessRes.data);
       } catch (err) {
@@ -48,13 +48,13 @@ const StudentBatchList = () => {
     setRequestingBatch(batchName);
     setError(null);
     try {
-      await axios.post("http://localhost:5000/batch/request", {
+      await axios.post("https://api-backend-institute.onrender.com/batch/request", {
         studentId,
         batchName,
       });
       // Refresh access list after request
       const accessRes = await axios.get(
-        `http://localhost:5000/batch/access/list?studentId=${studentId}`
+        `https://api-backend-institute.onrender.com/batch/access/list?studentId=${studentId}`
       );
       setAccessList(accessRes.data);
     } catch (err) {

@@ -14,7 +14,7 @@ const AdminExamsList = () => {
   useEffect(() => {
     const fetchExams = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/batch/get-batches", {
+        const response = await axios.get("https://api-backend-institute.onrender.com/batch/get-batches", {
           withCredentials: true,
         });
         setBatches(response.data);
@@ -55,7 +55,7 @@ const AdminExamsList = () => {
       setDeletingExam(examCode);
       await axios.delete(
        
-         ` http://localhost:5000/Question/exams/delete/${examCode}`,
+         ` https://api-backend-institute.onrender.com/Question/exams/delete/${examCode}`,
         // `https://backend-institute-production.up.railway.app/Question/exams/delete/${examCode}`,
         { withCredentials: true }
       );

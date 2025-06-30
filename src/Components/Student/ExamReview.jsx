@@ -20,7 +20,7 @@ export const ExamReview = () => {
     async function fetchReport() {
       try {
         const res = await axios.get(
-          `http://localhost:5000/Question/student/exam-report/${examId}/${studentId}`
+          `https://api-backend-institute.onrender.com/Question/student/exam-report/${examId}/${studentId}`
         );
         setReport(res.data);
       } catch (err) {

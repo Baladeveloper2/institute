@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const API = axios.create({
-baseURL:"http://localhost:5000/",
+baseURL:"https://api-backend-institute.onrender.com/",
 // baseURL:"https://ram-institute-backend-mrif.onrender.com/",
 // baseURL:"backend-institute-production.up.railway.app/",
 // baseURL:"https://ram-institute-backend.onrender.com/",

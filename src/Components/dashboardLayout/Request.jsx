@@ -19,7 +19,7 @@ export default function AdminExamRequests() {
   const fetchRequests = async () => {
     try {
      
-      const res = await axios.get('http://localhost:5000/batch/access/requests/list',{withCredentials: true});
+      const res = await axios.get('https://api-backend-institute.onrender.com/batch/access/requests/list',{withCredentials: true});
 
       // const res = await axios.get('https://backend-institute-production.up.railway.app/Question/GetALLRequests',{withCredentials: true});
       setRequests(res.data);
@@ -35,7 +35,7 @@ const updateStatus = async (studentId, status, batchName) => {
     setLoadingRequestId(studentId);
 
     await axios.put(
-      'http://localhost:5000/batch/access/update',
+      'https://api-backend-institute.onrender.com/batch/access/update',
       { studentId, status, batchName },
       { withCredentials: true }
     );

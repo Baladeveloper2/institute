@@ -68,7 +68,7 @@ const [customBatch, setCustomBatch] = useState('');
     formData.append('batchName', batchName === 'Custom' ? customBatch : batchName);
 
  
-    await axios.post('http://localhost:5000/Batch/upload-exam', formData);
+    await axios.post('https://api-backend-institute.onrender.com/Batch/upload-exam', formData);
 //  await axios.post('https://backend-institute-production.up.railway.app/api/upload-question-answer-pdf', formData);
 
     toast.success('Upload successful!');
