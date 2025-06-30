@@ -1,0 +1,147 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+const StudentBatchList = () => {
+  const [batches, setBatches] = useState([]); // all batches from server
+  const [accessList, setAccessList] = useState([]); // access requests for this student
+  const [loading, setLoading] = useState(true);
+  const [requestingBatch, setRequestingBatch] = useState(null); // batchName being requested
+  const [error, setError] = useState(null);
+  const navigate = useNavigate()
+    const studentId = localStorage.getItem('userId')
+    console.log(studentId,'userId');
+
+
+    const handleExamStart=async()=>{
+      navigate(`http://localhost:5000/batch/student/exam/${examCode}`)
+    }
+
+
+  useEffect(() => {
+    // Fetch all batches
+    const fetchBatches = async () => {
+      try {
+        const batchesRes = await axios.get("http://localhost:5000/batch/get-batches");
+        setBatches(batchesRes.data);
+      } catch (err) {
+        setError("Failed to load batches");
+      }
+    };
+
+    // Fetch this student's batch access list
+    const fetchAccessList = async () => {
+      try {
+        const accessRes = await axios.get(
+          `http://localhost:5000/batch/access/list?studentId=${studentId}`
+        );
+        setAccessList(accessRes.data);
+      } catch (err) {
+        setError("Failed to load access list");
+      }
+    };
+
+    Promise.all([fetchBatches(), fetchAccessList()]).finally(() => setLoading(false));
+  }, [studentId]);
+
+  const handleRequestAccess = async (batchName) => {
+    setRequestingBatch(batchName);
+    setError(null);
+    try {
+      await axios.post("http://localhost:5000/batch/request", {
+        studentId,
+        batchName,
+      });
+      // Refresh access list after request
+      const accessRes = await axios.get(
+        `http://localhost:5000/batch/access/list?studentId=${studentId}`
+      );
+      setAccessList(accessRes.data);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Failed to send access request"
+      );
+    } finally {
+      setRequestingBatch(null);
+    }
+  };
+
+  const getBatchAccessStatus = (batchName) => {
+    const access = accessList.find((a) => a.batchName === batchName);
+    return access ? access.status : null;
+  };
+
+  if (loading) return <div>Loading batches and access status...</div>;
+
+  return (
+    <div className="max-w-4xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6 text-center">
+        🎓 Student Batch Access
+      </h1>
+
+      {error && (
+        <div className="mb-4 text-red-600 font-semibold">{error}</div>
+      )}
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        {batches.map((batch) => {
+          const status = getBatchAccessStatus(batch.batchName);
+          const isApproved = status === "approved";
+          const isPending = status === "pending";
+
+          return (
+            <div
+              key={batch._id}
+              className="border rounded-lg p-4 shadow hover:shadow-lg transition relative"
+            >
+              <h2 className="text-xl font-semibold mb-2">{batch.batchName}</h2>
+
+              <div className="mb-4">
+                {isApproved && (
+                  <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                    ✔ Approved - Access Granted
+                  </span>
+                )}
+                {isPending && (
+                  <span className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold">
+                    ⏳ Pending Approval
+                  </span>
+                )}
+                {!status && (
+                  <span className="inline-block bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-sm font-semibold">
+                    ❌ No Request Made
+                  </span>
+                )}
+              </div>
+
+              {/* Show exams if approved */}
+            {isApproved && (
+  <button
+    onClick={() => navigate(`/student/batches/${batch.batchName}/exams`)}
+    className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+  >
+    View Exams
+  </button>
+)}
+
+              {/* Request Access Button if not pending or approved */}
+              {!isApproved && !isPending && (
+                <button
+                  disabled={requestingBatch === batch.batchName}
+                  onClick={() => handleRequestAccess(batch.batchName)}
+                  className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-wait"
+                >
+                  {requestingBatch === batch.batchName
+                    ? "Requesting..."
+                    : "Request Access"}
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default StudentBatchList;
