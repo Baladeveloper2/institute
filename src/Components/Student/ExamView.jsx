@@ -23,11 +23,7 @@ const router = useNavigate()
   useEffect(() => {
     async function fetchExam() {
       try {
-<<<<<<< HEAD
         const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam/${examCode}/${encodeURIComponent(batchName)}`);
-=======
-        const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam/${examCode}/${encodeURIComponent(batchName)}`);
->>>>>>> a5be5d2 (updated code)
 
         const uniqueQuestions = res.data.questions.filter((q, i, arr) =>
           i === arr.findIndex(other => other.questionNumber === q.questionNumber)
@@ -76,11 +72,7 @@ const router = useNavigate()
 
   const handleSubmit = async () => {
     try {
-<<<<<<< HEAD
       await axios.post('https://api-backend-institute.onrender.com/Question/student/submit', {
-=======
-      await axios.post('https://api-backend-institute.onrender.com/Question/student/submit', {
->>>>>>> a5be5d2 (updated code)
         examCode,
         batchName,
         examId: exam.examId,
@@ -100,11 +92,7 @@ const router = useNavigate()
 
   const fetchReport = async () => {
     try {
-<<<<<<< HEAD
 const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam-report/${exam.examId}/${studentId}`);
-=======
-const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam-report/${exam.examId}/${studentId}`);
->>>>>>> a5be5d2 (updated code)
 
        setReport(res.data);
        router.push(`/exam-review/${exam.examId}/${studentId}`)
@@ -235,11 +223,7 @@ const res = await axios.get(`https://api-backend-institute.onrender.com/Question
           </p>
         </div>
 
-<<<<<<< HEAD
         <div className="grid grid-cols-5 gap-2 text-white text-sm mb-2">
-=======
-        {/* <div className="grid grid-cols-5 gap-2 text-white text-sm mb-2">
->>>>>>> a5be5d2 (updated code)
         {paginatedQuestions.map((currentQuestion, idx) => {
   const qNo = currentQuestion.questionNumber;
   const answerDetail = report?.answerDetails?.find(a => a.questionId === currentQuestion._id);
@@ -327,11 +311,7 @@ const res = await axios.get(`https://api-backend-institute.onrender.com/Question
   );
 })}
 
-<<<<<<< HEAD
         </div>
-=======
-        </div> */}
->>>>>>> a5be5d2 (updated code)
 
         <div className="flex justify-between mb-2">
           <button disabled={page === 0} onClick={() => setPage(p => Math.max(p - 1, 0))} className="text-xs bg-gray-200 px-2 py-1 rounded">Prev</button>
@@ -361,11 +341,7 @@ const res = await axios.get(`https://api-backend-institute.onrender.com/Question
     </p>
   </div>
 )}
-<<<<<<< HEAD
 {Object.entries(currentQuestion.options || {}).map(([key, value]) => {
-=======
-{/* {Object.entries(currentQuestion.options || {}).map(([key, value]) => {
->>>>>>> a5be5d2 (updated code)
   const answerDetail = report?.answerDetails?.find(a => a.questionId === currentQuestion._id);
   const isCorrect = answerDetail?.correctOption === key;
   const isSelected = answers[currentQuestion.questionNumber] === key;
@@ -393,11 +369,7 @@ const res = await axios.get(`https://api-backend-institute.onrender.com/Question
       <span className="ml-2 font-medium">{key}: {value}</span>
     </label>
   );
-<<<<<<< HEAD
 })}
-=======
-})} */}
->>>>>>> a5be5d2 (updated code)
 
       </div>
     </div>
@@ -433,11 +405,7 @@ export default ExamViewer;
 //   useEffect(() => {
 //     async function fetchExam() {
 //       try {
-<<<<<<< HEAD
 //         const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam/${examCode}/${encodeURIComponent(batchName)}`);
-=======
-//         const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam/${examCode}/${encodeURIComponent(batchName)}`);
->>>>>>> a5be5d2 (updated code)
         
 //         // ✅ Remove duplicate questions by questionNumber
 //         const uniqueQuestions = res.data.questions.filter((q, i, arr) =>
@@ -486,11 +454,7 @@ export default ExamViewer;
 
 //   const handleSubmit = async () => {
 //     try {
-<<<<<<< HEAD
 //       await axios.post('https://api-backend-institute.onrender.com/Question/student/submit', {
-=======
-//       await axios.post('https://api-backend-institute.onrender.com/Question/student/submit', {
->>>>>>> a5be5d2 (updated code)
 //         examCode,
 //         batchName,
 //         studentId,
@@ -507,11 +471,7 @@ export default ExamViewer;
 
 //   const fetchReport = async () => {
 //     try {
-<<<<<<< HEAD
 //       const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam-report/${exam._id}/${studentId}`);
-=======
-//       const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam-report/${exam._id}/${studentId}`);
->>>>>>> a5be5d2 (updated code)
 //       setReport(res.data);
 //     } catch {}
 //   };

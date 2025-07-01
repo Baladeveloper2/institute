@@ -2,11 +2,7 @@ import axios from "axios"
 
 
 const API = axios.create({
-<<<<<<< HEAD
 baseURL:"https://api-backend-institute.onrender.com/",
-=======
-baseURL:"https://api-backend-institute.onrender.com/",
->>>>>>> a5be5d2 (updated code)
 // baseURL:"https://ram-institute-backend-mrif.onrender.com/",
 // baseURL:"backend-institute-production.up.railway.app/",
 // baseURL:"https://ram-institute-backend.onrender.com/",

@@ -27,11 +27,7 @@ const [loading, setLoading] = useState(false);
 
     try {
       // const response = await axios.post("https://backend-institute-production.up.railway.app/Admin/Login", { ...Form },{withCredentials: true});
-<<<<<<< HEAD
       const response = await axios.post("https://api-backend-institute.onrender.com/Admin/Login", { ...Form },{withCredentials: true});
-=======
-      const response = await axios.post("https://api-backend-institute.onrender.com/Admin/Login", { ...Form },{withCredentials: true});
->>>>>>> a5be5d2 (updated code)
 
       toast.success("Login Successful!");
       setTimeout(() => {
