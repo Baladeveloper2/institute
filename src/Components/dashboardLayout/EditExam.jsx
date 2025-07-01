@@ -14,7 +14,7 @@ const EditExam = () => {
   useEffect(() => {
     const fetchExamDetails = async () => {
       try {
-        const response = await axios.get(`https://backend-institute-production.up.railway.app/Question/exams/${examCode}`);
+        const response = await axios.get(`https://api-backend-institute.onrender.com/Question/exams/${examCode}`);
         setExamDetails(response.data);
         setLoading(false);
       } catch (error) {
@@ -36,7 +36,7 @@ const EditExam = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://backend-institute-production.up.railway.app/Question/exams/update/${examCode}`, examDetails);
+      await axios.put(`https://api-backend-institute.onrender.com/Question/exams/update/${examCode}`, examDetails);
       alert("Exam updated successfully");
       history.push("/admin/exams");
     } catch (error) {

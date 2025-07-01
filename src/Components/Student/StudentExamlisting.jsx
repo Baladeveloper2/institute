@@ -81,11 +81,11 @@ useEffect(() => {
   async function fetchAllData() {
     setLoading(true);
     try {
-      const examsRes = await axios.get('https://backend-institute-production.up.railway.app/Question/all-exams',{withCredentials: true});
+      const examsRes = await axios.get('https://api-backend-institute.onrender.com/Question/all-exams',{withCredentials: true});
       const examsList = examsRes.data.exams || examsRes.data || [];
       setExams(examsList);
 
-      const reqRes = await axios.get(`https://backend-institute-production.up.railway.app/Question/student/${studentId}/requests`,{withCredentials: true});
+      const reqRes = await axios.get(`https://api-backend-institute.onrender.com/Question/student/${studentId}/requests`,{withCredentials: true});
       const reqMap = {};
       (reqRes.data.requests || []).forEach(req => {
         reqMap[req.examCode] = req.status;
@@ -96,7 +96,7 @@ useEffect(() => {
       // Fetch submission statuses in parallel
       const statusPromises = examsList.map(async exam => {
         try {
-          const statusRes = await axios.get(`https://backend-institute-production.up.railway.app/Student/student/${studentId}/exam/${exam.examCode}/status`,{withCredentials: true});
+          const statusRes = await axios.get(`https://api-backend-institute.onrender.com/Student/student/${studentId}/exam/${exam.examCode}/status`,{withCredentials: true});
           return [exam._id, statusRes.data || {}];
         } catch {
           return [exam._id, {}];
@@ -132,12 +132,12 @@ useEffect(() => {
 
       await Promise.all(
         exams.map(async (exam) => {
-          const statusRes = await axios.get(`https://backend-institute-production.up.railway.app/Student/student/${studentId}/exam/${exam.examCode}/status`,{withCredentials: true});
+          const statusRes = await axios.get(`https://api-backend-institute.onrender.com/Student/student/${studentId}/exam/${exam.examCode}/status`,{withCredentials: true});
           const status = statusRes.data.status;
           statusMap[exam.examCode] = status;
 
           if (status === 'completed') {
-            const resultRes = await axios.get(`https://backend-institute-production.up.railway.app/Student/student/${studentId}/exam/${exam.examCode}/result`,{withCredentials: true});
+            const resultRes = await axios.get(`https://api-backend-institute.onrender.com/Student/student/${studentId}/exam/${exam.examCode}/result`,{withCredentials: true});
             resultMap[exam.examCode] = resultRes.data;
             console.log(resultMap,"mao");
             
@@ -161,7 +161,7 @@ useEffect(() => {
     try {
         await Promise.all(
       exams.map(async (exam) => {
-      const res = await axios.get(`https://backend-institute-production.up.railway.app/Student/student/${studentId}/exam/${exam.examCode}/status`,{withCredentials: true});
+      const res = await axios.get(`https://api-backend-institute.onrender.com/Student/student/${studentId}/exam/${exam.examCode}/status`,{withCredentials: true});
       setStudentExamStatus(res.data); // This should include { examId, status }
     }))} catch (err) {
       console.error('Failed to fetch exam statuses', err);
@@ -191,10 +191,10 @@ useEffect(() => {
   const requestAccess = async (examId) => {
     try {
       setLoadingMap(prev => ({ ...prev, [examId]: true }));
-      await axios.post('https://backend-institute-production.up.railway.app/Question/exams/request', { examCode: examId, studentId });
+      await axios.post('https://api-backend-institute.onrender.com/Question/exams/request', { examCode: examId, studentId });
       toast.success('Access request sent to admin');
       // Refresh requests after successful request
-      const reqRes = await axios.get(`https://backend-institute-production.up.railway.app/Question/student/${studentId}/requests`);
+      const reqRes = await axios.get(`https://api-backend-institute.onrender.com/Question/student/${studentId}/requests`);
       const reqMap = {};
       (reqRes.data.requests || []).forEach(req => {
         reqMap[req.examCode] = req.status;
@@ -215,7 +215,7 @@ useEffect(() => {
       return;
     }
     try {
-      const res = await axios.get(`https://backend-institute-production.up.railway.app/Question/exams/${exam.examCode}/questions`,{withCredentials: true});
+      const res = await axios.get(`https://api-backend-institute.onrender.com/Question/exams/${exam.examCode}/questions`,{withCredentials: true});
       const { questions } = res.data;
       navigate(`/student/exam/${exam.examCode}`, {
         state: { questions, examEndTime: exam.examEndTime },
@@ -228,7 +228,7 @@ useEffect(() => {
   const handleRequest = async (examCode) => {
     try {
       setLoadingMap(prev => ({ ...prev, [examCode]: true }));
-      await axios.post('https://backend-institute-production.up.railway.app/Question/exams/request', { examCode, studentId },{withCredentials: true});
+      await axios.post('https://api-backend-institute.onrender.com/Question/exams/request', { examCode, studentId },{withCredentials: true});
       toast.success('Request sent to admin.');
       setRequests();
     } catch {

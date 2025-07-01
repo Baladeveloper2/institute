@@ -64,7 +64,7 @@ const AdminExamsList = () => {
 =======
          ` https://api-backend-institute.onrender.com/Question/exams/delete/${examCode}`,
 >>>>>>> a5be5d2 (updated code)
-        // `https://backend-institute-production.up.railway.app/Question/exams/delete/${examCode}`,
+        // `https://api-backend-institute.onrender.com/Question/exams/delete/${examCode}`,
         { withCredentials: true }
       );
       setBatches((prev) =>

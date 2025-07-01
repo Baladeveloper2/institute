@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStatistics = async () => {
       try {
-        const response = await axios.get("https://backend-institute-production.up.railway.app/Admin/admin/statistics",{withCredentials: true});
+        const response = await axios.get("https://api-backend-institute.onrender.com/Admin/admin/statistics",{withCredentials: true});
         const data = await response.data;
         setStats(data);
         console.log("data",data);

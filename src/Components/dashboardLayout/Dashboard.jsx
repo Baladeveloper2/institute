@@ -10,7 +10,7 @@ export default function Dashboard (){
         useEffect(()=>{
         const FetchData = async()=>{
         try{
-        const response = await axios.get('https://backend-institute-production.up.railway.app/Admin/dashboard',{
+        const response = await axios.get('https://api-backend-institute.onrender.com/Admin/dashboard',{
         withCredentials: true
         })
         setadminData(response.data)

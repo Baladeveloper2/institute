@@ -33,7 +33,7 @@ const [loading, setLoading] = useState(false);
           return;
         }
     try {
-      const response = await axios.post("https://backend-institute-production.up.railway.app/Admin/Register", { ...FormData },{withCredentials: true});
+      const response = await axios.post("https://api-backend-institute.onrender.com/Admin/Register", { ...FormData },{withCredentials: true});
       console.log("response", response);
       toast.success('Register Successful!')
       setTimeout(()=>{

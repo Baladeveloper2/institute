@@ -27,7 +27,7 @@ export default function Sidebar({ setSidebarOpen }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post("https://backend-institute-production.up.railway.app/Admin/Logout", null, { withCredentials: true });
+      await axios.post("https://api-backend-institute.onrender.com/Admin/Logout", null, { withCredentials: true });
       toast.success("Logout successful!");
       
       // Delay navigation slightly to allow toast to show

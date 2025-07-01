@@ -31,7 +31,7 @@ const StudentDashboardLayout = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("https://backend-institute-production.up.railway.app/Student/Logout");
+      await axios.post("https://api-backend-institute.onrender.com/Student/Logout");
       toast.success("Logout Successful!");
       setTimeout(() => {
         navigate('/student-Login');

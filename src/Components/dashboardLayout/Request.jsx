@@ -25,7 +25,7 @@ export default function AdminExamRequests() {
       const res = await axios.get('https://api-backend-institute.onrender.com/batch/access/requests/list',{withCredentials: true});
 >>>>>>> a5be5d2 (updated code)
 
-      // const res = await axios.get('https://backend-institute-production.up.railway.app/Question/GetALLRequests',{withCredentials: true});
+      // const res = await axios.get('https://api-backend-institute.onrender.com/Question/GetALLRequests',{withCredentials: true});
       setRequests(res.data);
       console.log(res.data,"response");
       

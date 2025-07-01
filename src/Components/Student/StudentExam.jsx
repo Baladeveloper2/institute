@@ -27,20 +27,20 @@ useEffect(() => {
 
       // Check submission status
       const statusRes = await axios.get(
-        `https://backend-institute-production.up.railway.app/Student/student/${studentId}/exam/${examCode}/status`
+        `https://api-backend-institute.onrender.com/Student/student/${studentId}/exam/${examCode}/status`
       ,{withCredentials: true});
 
       if (statusRes.data?.isSubmitted) {
         setIsSubmitted(true);
         setScore(statusRes.data?.score || null);
         // ✅ Still fetch questions for total count
-        const res = await axios.get(`https://backend-institute-production.up.railway.app/Question/exams/${examCode}/questions`,{withCredentials: true});
+        const res = await axios.get(`https://api-backend-institute.onrender.com/Question/exams/${examCode}/questions`,{withCredentials: true});
         setQuestions(res.data.questions || []);
         return;
       }
 
       // Fetch questions if not submitted
-      const res = await axios.get(`https://backend-institute-production.up.railway.app/Question/exams/${examCode}/questions`,{withCredentials: true});
+      const res = await axios.get(`https://api-backend-institute.onrender.com/Question/exams/${examCode}/questions`,{withCredentials: true});
       const fetchedQuestions = res.data.questions || [];
       setQuestions(fetchedQuestions);
     } catch (error) {
@@ -63,7 +63,7 @@ useEffect(() => {
     e.preventDefault();
     try {
       const studentId = localStorage.getItem("userId");
-      const response = await axios.post(`https://backend-institute-production.up.railway.app/Question/student/exam/submit`, {
+      const response = await axios.post(`https://api-backend-institute.onrender.com/Question/student/exam/submit`, {
         examCode,
         studentId,
         answers,

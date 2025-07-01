@@ -71,7 +71,7 @@ const [loading, setLoading] = useState(false);
         imageUrl = await uploadToCloudinary(profilePhoto);
       }
 
-      const res = await axios.post("https://backend-institute-production.up.railway.app/Student/Register", {
+      const res = await axios.post("https://api-backend-institute.onrender.com/Student/Register", {
         ...formData,
         profilePhoto: imageUrl,
       },{withCredentials: true});

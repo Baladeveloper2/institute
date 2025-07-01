@@ -21,7 +21,7 @@ export default function StudentListAdmin() {
     try{
       setLoading(true);
 if (window.confirm('Are you sure you want to delete this student?')) {
-  await axios.delete(`https://backend-institute-production.up.railway.app/Student/delete/${id}`,{withCredentials: true});
+  await axios.delete(`https://api-backend-institute.onrender.com/Student/delete/${id}`,{withCredentials: true});
   fetchStudents();
 }
     }
@@ -35,7 +35,7 @@ if (window.confirm('Are you sure you want to delete this student?')) {
   const fetchStudents = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('https://backend-institute-production.up.railway.app/Student/list',{withCredentials: true});
+      const res = await axios.get('https://api-backend-institute.onrender.com/Student/list',{withCredentials: true});
       setStudents(res.data.students);
       setFilteredStudents(res.data.students);
     } catch (err) {
@@ -73,7 +73,7 @@ if (window.confirm('Are you sure you want to delete this student?')) {
 
   const handleSave = async () => {
     try {
-      await axios.put(`https://backend-institute-production.up.railway.app/Student/update/${selectedStudent._id}`, selectedStudent,{withCredentials: true});
+      await axios.put(`https://api-backend-institute.onrender.com/Student/update/${selectedStudent._id}`, selectedStudent,{withCredentials: true});
       fetchStudents();
       setIsEdit(false);
       setSelectedStudent(null);

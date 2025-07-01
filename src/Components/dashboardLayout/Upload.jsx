@@ -73,7 +73,7 @@ const [customBatch, setCustomBatch] = useState('');
 =======
     await axios.post('https://api-backend-institute.onrender.com/Batch/upload-exam', formData);
 >>>>>>> a5be5d2 (updated code)
-//  await axios.post('https://backend-institute-production.up.railway.app/api/upload-question-answer-pdf', formData);
+//  await axios.post('https://api-backend-institute.onrender.com/api/upload-question-answer-pdf', formData);
 
     toast.success('Upload successful!');
     window.location.reload();

@@ -14,14 +14,14 @@ const StudentProfile = () => {
 
     const fetchStudent = async () => {
       try {
-        const res = await axios.get(`https://backend-institute-production.up.railway.app/Student/student-profile/${userId}`)
+        const res = await axios.get(`https://api-backend-institute.onrender.com/Student/student-profile/${userId}`)
         setStudentData(res.data.studentdetails)
         console.log(res.data);
         
 
         // Example: fetch completed and total exam counts
         
-        const examRes = await axios.get(`https://backend-institute-production.up.railway.app/Question/student/${userId}/exam/status`,{withCredentials: true})
+        const examRes = await axios.get(`https://api-backend-institute.onrender.com/Question/student/${userId}/exam/status`,{withCredentials: true})
         setExamStats(examRes.data) // expected: { completed: 6, total: 10 }
       } catch (err) {
         console.error('Error fetching student profile:', err)

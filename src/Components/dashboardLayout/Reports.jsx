@@ -16,7 +16,7 @@ export default function AdminExamReport() {
   const fetchReports = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`https://backend-institute-production.up.railway.app/Student/Reports`,{withCredentials: true});
+      const res = await axios.get(`https://api-backend-institute.onrender.com/Student/Reports`,{withCredentials: true});
       setReports(res.data);
       console.log(res.data,"data");
       
