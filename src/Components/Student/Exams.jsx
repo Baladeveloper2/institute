@@ -46,7 +46,11 @@ console.log(examCode,'code');
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
+<<<<<<< HEAD
         const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam/${examCode}`);
+=======
+        const res = await axios.get(`https://api-backend-institute.onrender.com/Question/student/exam/${examCode}`);
+>>>>>>> a5be5d2 (updated code)
         dispatch({ type: 'SET_QUESTIONS', payload: res.data.questions });
         setLoading(false);
       } catch (err) {

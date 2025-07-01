@@ -28,6 +28,10 @@ import StudentBatchList from './Components/Student/BatchesListing'
 import Examlist from './Components/Student/ExamPage'
 import ExamViewer from './Components/Student/ExamView'
 import { ExamReview } from './Components/Student/ExamReview'
+<<<<<<< HEAD
+=======
+import StudentReportList from './Components/Student/StudentReportList'
+>>>>>>> a5be5d2 (updated code)
 function App() {
   const [count, setCount] = useState(0)
 
@@ -54,11 +58,19 @@ function App() {
     <Route path='exams' element={<StudentExamList />} />
     <Route path='profile' element={<StudentProfile />} />
     <Route path='exams-list' element={<StudentExamListing />} />
+<<<<<<< HEAD
     <Route path="/student/batches/:batchName/exams" element={<Examlist />} />
     <Route path="/student/exam/:examCode/:batchName" element={<ExamViewer />} />
     <Route path="/student/exam-review/:examId/:studentId" element={<ExamReview />} />
 
     
+=======
+    <Route path="reports/:studentId" element={<StudentReportList />} />
+
+    <Route path="/student/batches/:batchName/exams" element={<Examlist />} />
+    <Route path="/student/exam/:examCode/:batchName" element={<ExamViewer />} />
+    <Route path="/student/exam-review/:examId/:studentId" element={<ExamReview />} />
+>>>>>>> a5be5d2 (updated code)
   </Route>
         
 
