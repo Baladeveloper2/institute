@@ -14,11 +14,7 @@ const StudentBatchList = () => {
 
 
     const handleExamStart=async()=>{
-<<<<<<< HEAD
       navigate(`https://api-backend-institute.onrender.com/batch/student/exam/${examCode}`)
-=======
-      navigate(`https://api-backend-institute.onrender.com/batch/student/exam/${examCode}`)
->>>>>>> a5be5d2 (updated code)
     }
 
 
@@ -26,11 +22,7 @@ const StudentBatchList = () => {
     // Fetch all batches
     const fetchBatches = async () => {
       try {
-<<<<<<< HEAD
         const batchesRes = await axios.get("https://api-backend-institute.onrender.com/batch/get-batches");
-=======
-        const batchesRes = await axios.get("https://api-backend-institute.onrender.com/batch/get-batches");
->>>>>>> a5be5d2 (updated code)
         setBatches(batchesRes.data);
       } catch (err) {
         setError("Failed to load batches");
@@ -41,11 +33,7 @@ const StudentBatchList = () => {
     const fetchAccessList = async () => {
       try {
         const accessRes = await axios.get(
-<<<<<<< HEAD
           `https://api-backend-institute.onrender.com/batch/access/list?studentId=${studentId}`
-=======
-          `https://api-backend-institute.onrender.com/batch/access/list?studentId=${studentId}`
->>>>>>> a5be5d2 (updated code)
         );
         setAccessList(accessRes.data);
       } catch (err) {
@@ -60,21 +48,13 @@ const StudentBatchList = () => {
     setRequestingBatch(batchName);
     setError(null);
     try {
-<<<<<<< HEAD
       await axios.post("https://api-backend-institute.onrender.com/batch/request", {
-=======
-      await axios.post("https://api-backend-institute.onrender.com/batch/request", {
->>>>>>> a5be5d2 (updated code)
         studentId,
         batchName,
       });
       // Refresh access list after request
       const accessRes = await axios.get(
-<<<<<<< HEAD
         `https://api-backend-institute.onrender.com/batch/access/list?studentId=${studentId}`
-=======
-        `https://api-backend-institute.onrender.com/batch/access/list?studentId=${studentId}`
->>>>>>> a5be5d2 (updated code)
       );
       setAccessList(accessRes.data);
     } catch (err) {
